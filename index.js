@@ -5,10 +5,11 @@ const app = express();
 
 
 const db = mysql.createPool({
-    host: "localhost:3306",
+    host: "localhost",
     user:"root",
     password:"123456789",
     database: "BD_Portafolio",
+    port:3306,
 })
 
 
@@ -20,6 +21,12 @@ app.use(express.urlencoded({
     extended:true,
 }));
 
+app.get("/", (req,res) => {
+    const sql = "SELECT * FROM Contacto";
+    db.query(sql, (err,result) => {
+        res.send(result);
+    })
+})
 
 
 app.post("/contacto", (req, res) => {
@@ -31,6 +38,10 @@ app.post("/contacto", (req, res) => {
     const sql = "INSERT INTO Contacto(Cli_nombre, Cli_correo,Cli_proyecto,Cli_mensaje) VALUES(?,?,?,?)";
 
     db.query(sql, [nombre,correo,proyecto,texto], (err,result) => {
-        result.send("Usuario Ingresado Correctamente");
+        res.send("Usuario Ingresado Correctamente");
     })
+})
+
+app.listen(8080, () => {
+    console.log("Escuchando en puerto 8080");
 })

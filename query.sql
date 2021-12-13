@@ -12,5 +12,7 @@ CREATE TABLE Contacto(
 DROP TABLE Contacto;
 
 INSERT INTO Contacto values("1","Miguel","superbrandon2018@gmail.com","Lulu Proyecto","Hola mi proyecto es de una tienda");
-INSERT INTO Contacto values("1","Miguel","superbrandon2018@gmail.com","Lulu Proyecto","Hola mi proyecto es de una tienda");
 SELECT * FROM Contacto;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456789';
+flush privileges;
